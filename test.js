@@ -2,35 +2,37 @@
 
 const assert = require('assert');
 const joiDateonly = require('./index.js');
+let joi = require('joi');
+joi = joiDateonly(joi);
 
 describe('joi-dateonly', () => {
-  it('is a Joi instance', () => {
-    assert(joiDateonly.isJoi)
+  it('is a Joi function', () => {
+    assert.equal('function', typeof joiDateonly)
   });
 
   it('has dateonly method', () => {
-    assert.equal('function', typeof joiDateonly.dateonly);
+    assert.equal('function', typeof joi.dateonly);
   });
 
   describe('schema', () => {
-    const schema = joiDateonly.dateonly();
+    const schema = joi.dateonly();
 
     it('should validate Date instance', () => {
-      const result = joiDateonly.validate(new Date('2018-06-21'), schema);
+      const result = joi.validate(new Date('2018-06-21'), schema);
       assert.ifError(result.error);
       assert.equal(20180521, result.value);
     });
 
     it('should validate date string', () => {
       const dateString = '2018-06-15';
-      const result = joiDateonly.validate(dateString, schema);
+      const result = joi.validate(dateString, schema);
       assert.ifError(result.error);
       assert.equal(20180515, result.value);
     })
 
     it('should validate 8-digit number', () => {
       const goodNumber = 20180520;
-      const result = joiDateonly.validate(goodNumber , schema);
+      const result = joi.validate(goodNumber , schema);
       assert.ifError(result.error);
       assert.equal(goodNumber, result.value);
     });
@@ -38,7 +40,7 @@ describe('joi-dateonly', () => {
     it('should NOT validate improper number', () => {
       const badNumbers = [0, new Date().getTime()];
       badNumbers.forEach(badNumber => {
-        const result = joiDateonly.validate(badNumber, schema);
+        const result = joi.validate(badNumber, schema);
         assert(result.error, result.error);
       });
     });
@@ -47,7 +49,7 @@ describe('joi-dateonly', () => {
       // 31st February and 31st April do not exist
       const nonExistingDates = [20180131, 20180331];
       nonExistingDates.forEach(badDate => {
-        const result = joiDateonly.validate(badDate, schema);
+        const result = joi.validate(badDate, schema);
         assert(result.error, result.error);
       });
     });
