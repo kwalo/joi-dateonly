@@ -1,0 +1,26 @@
+{
+  "name": "joi-dateonly",
+  "version": "1.0.0",
+  "description": "A dateonly validatof for joi",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "joi",
+    "date",
+    "timezone",
+    "extension",
+    "validation"
+  ],
+  "author": "Krzysztof Walo <krzysztof.walo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "joi": "^13.4.0",
+    "dateonly": "^1.2.0"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^5.2.0"
+  }
+}
