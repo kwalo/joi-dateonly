@@ -1,6 +1,6 @@
 {
   "name": "joi-dateonly",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A dateonly validatof for joi",
   "main": "index.js",
   "scripts": {
